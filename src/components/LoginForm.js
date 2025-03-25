@@ -57,7 +57,7 @@ function LoginForm() {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-green">
+                    <button type="submit" className="btn btn-blue">
                         {loading ? 'Loading...' : 'Submit'} {/* Display loading indicator */}
                     </button>
                     <p>Don't have an account ?</p>

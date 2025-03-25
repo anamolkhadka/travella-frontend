@@ -1,0 +1,19 @@
+.carousel-image {
+    width: 100%;
+    object-fit: cover;
+    height: 800px; /* Default for medium screens */
+}
+
+@media (max-width: 768px) {
+.carousel-image {
+    height: 300px; /* Smaller screens like tablets or phones */
+}
+}
+
+@media (min-width: 1200px) {
+.carousel-image {
+    height: 10
+    00px; /* Larger screens like desktops */
+}
+}
+  

@@ -1,0 +1,26 @@
+.navbar-custom {
+    background-color: #3674B5 !important; /* Green theme color */
+    padding: 0.5rem 1rem;
+}
+.navbar-items {
+    color: #fff;
+    font-weight: 500;
+}
+
+.navbar-items:hover {
+    background-color: #2b5d95; /* Slightly darker blue */
+    color: #f0f0f0 !important;
+    text-decoration: none;
+}
+
+.navbar-logo {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%; /* makes it round */
+    padding: 2px; /* reduce whitespace around image */
+    background-color: transparent;
+} 
+
+.navbar-nav .nav-link {
+    color: white !important;
+}
