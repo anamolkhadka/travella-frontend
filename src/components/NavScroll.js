@@ -9,7 +9,7 @@ import "../styles/NavScroll.css"
 
 function NavScroll() {
     const navigate = useNavigate();
-    const isLoggedIn = true; // 🔁 Replace with actual auth check
+    const isLoggedIn = false; // 🔁 Replace with actual auth check
 
     const handleLogin = () => {
         navigate('/login');
@@ -40,6 +40,7 @@ function NavScroll() {
                         navbarScroll
                     >
                         <Nav.Link as={Link} to="/" className='navbar-items'>Home</Nav.Link>
+                        <Nav.Link as={Link} to="#" className='navbar-items'>About</Nav.Link>
                         <NavDropdown title="Itinerary" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="#">Custom Itinerary</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="#">AI Generated Itinerary</NavDropdown.Item>
