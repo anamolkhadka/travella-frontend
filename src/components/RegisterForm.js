@@ -4,6 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../styles/LoginForm.css";
 
+const API_URL = "http://localhost:3000";
+
 function RegisterForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,7 +30,29 @@ function RegisterForm() {
 
     /// This function handles the form submission.
     const handleSubmit = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        setError(null);
+        console.log("Registering user", { email, password, location });
 
+        // Make a POST request to the server.
+        try {
+            const response = await axios.post(`${API_URL}/auth/register`, {
+                email,
+                password,
+                location,
+            });
+
+            const { message } = response.data;
+
+            // Redirect to login page
+            navigate('/login', { replace: true });
+        } catch (err) {
+            setError("Registration failed: " + err.response.data.message); // Set error message
+            console.log(err);
+        } finally {
+            setLoading(false); // End loading
+        }
     };
 
     return (

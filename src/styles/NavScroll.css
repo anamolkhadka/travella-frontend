@@ -6,6 +6,10 @@
     color: #fff;
     font-weight: 500;
 }
+.user-email {
+    font-style: italic;
+    opacity: 0.9;
+}
 
 .navbar-items:hover {
     background-color: #2b5d95; /* Slightly darker blue */

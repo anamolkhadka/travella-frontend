@@ -4,20 +4,37 @@ import Nav from 'react-bootstrap/Nav';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import axios from 'axios';
 import "../styles/NavScroll.css"
 
+const API_URL = "http://localhost:3000";
 
-function NavScroll() {
+function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
     const navigate = useNavigate();
-    const isLoggedIn = false; // 🔁 Replace with actual auth check
 
     const handleLogin = () => {
         navigate('/login');
     };
 
-    const handleLogout = () => {
-        // Clear token logic here
-        navigate('/');
+    const handleLogout = async () => {
+       try {
+            // Make a POST request to the server.
+            const response = await axios.post(`${API_URL}/auth/logout`);
+            const { message } = response.data;
+            console.log(message);
+            // Remove token from local storage
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            localStorage.removeItem('isAuthenticated');
+            // Update user state
+            setUser(null);
+            setIsAuthenticated(false);
+            setToken('');
+            // Redirect to Home page
+            navigate('/', { replace: true });
+       } catch (err) {
+            console.log('Logout failed:', err);
+       }
     };
 
     return (
@@ -31,7 +48,11 @@ function NavScroll() {
                     />
                 </Navbar.Brand>
                 <Navbar.Brand className="navbar-items fw-bold me-5">Travella</Navbar.Brand>
-
+                {user && (
+                    <Nav.Link disabled className="navbar-items user-email">
+                        {user.email}
+                    </Nav.Link>
+                )}
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
@@ -40,7 +61,7 @@ function NavScroll() {
                         navbarScroll
                     >
                         <Nav.Link as={Link} to="/" className='navbar-items'>Home</Nav.Link>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>About</Nav.Link>
+                        <Nav.Link href="#about" className='navbar-items'>About</Nav.Link>
                         <NavDropdown title="Itinerary" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="#">Custom Itinerary</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="#">AI Generated Itinerary</NavDropdown.Item>
@@ -55,7 +76,7 @@ function NavScroll() {
                     </Nav>
 
                     <div className="d-flex me-4">
-                        {isLoggedIn ? (
+                        {user ? (
                         <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
                         ) : (
                         <Button variant="light" onClick={handleLogin}>Login</Button>

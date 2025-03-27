@@ -6,13 +6,27 @@ import Home from './components/Home';
 import './styles/App.css';
 
 function App() {
+  //Handling user data and user authentication state from the frontend.
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') === 'true');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
+
+  // This ensures any update to user, token or isAuthenticated syncs to localStorage
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+    localStorage.setItem('isAuthenticated', isAuthenticated.toString());
+    localStorage.setItem('token', token);
+  }, [user, isAuthenticated, token]);  
+
   return (
     <Router>
       <div className="App">
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="/" element={<Home user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
+            <Route path="/login" element={<LoginForm setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/register" element={<RegisterForm />} />
           </Routes>
         </div>
