@@ -49,9 +49,9 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                 </Navbar.Brand>
                 <Navbar.Brand className="navbar-items fw-bold me-5">Travella</Navbar.Brand>
                 {user && (
-                    <Nav.Link disabled className="navbar-items user-email">
+                    <Navbar.Brand className="navbar-items fw-bold me-5">
                         {user.email}
-                    </Nav.Link>
+                    </Navbar.Brand>
                 )}
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
@@ -77,7 +77,7 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
 
                     <div className="d-flex me-4">
                         {user ? (
-                        <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
+                        <Button variant="outline-light" className="ms-3" onClick={handleLogout}>Logout</Button>
                         ) : (
                         <Button variant="light" onClick={handleLogin}>Login</Button>
                         )}
