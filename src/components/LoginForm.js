@@ -36,14 +36,22 @@ function LoginForm({ setUser, setIsAuthenticated, setToken }) {
             });
 
             const { message, token, userId } = response.data;
+            
+            // Get User profile from the server
+            const userResponse = await axios.get(`${API_URL}/users/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const userProfile = userResponse.data;
 
-            // Set token to local storage
+            // Store user and token to local storage
             localStorage.setItem('token', token);
-            localStorage.setItem("user", JSON.stringify({ email, userId }));
+            localStorage.setItem("user", JSON.stringify(userProfile));
             localStorage.setItem("isAuthenticated", "true");
             
             // Update user state
-            setUser({ email, userId });
+            setUser(userProfile);
             setIsAuthenticated(true);
             setToken(token);
 

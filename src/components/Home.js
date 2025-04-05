@@ -2,11 +2,8 @@
 import Carousel from 'react-bootstrap/Carousel';
 import React, { useState } from 'react';
 import NavScroll from './NavScroll';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import "../styles/Home.css";
 import { aboutSection, featuresSection } from '../data/data.js';
-import Footer from './Footer.js';
 
 
 function Home({ user, setUser, setIsAuthenticated, setToken }) {
@@ -113,8 +110,6 @@ function Home({ user, setUser, setIsAuthenticated, setToken }) {
                     ))}
                 </div>
             </div>
-
-            <Footer />
         </div>
     );
 }

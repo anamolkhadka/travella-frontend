@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
+import UserProfile from './components/UserProfile';
 import './styles/App.css';
+import Footer from './components/Footer';
 
 function App() {
   //Handling user data and user authentication state from the frontend.
@@ -28,8 +30,10 @@ function App() {
             <Route path="/" element={<Home user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/login" element={<LoginForm setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/register" element={<RegisterForm />} />
+            <Route path="/userProfile" element={isAuthenticated ? <UserProfile user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
+        <Footer />
       </div>
     </Router>
     

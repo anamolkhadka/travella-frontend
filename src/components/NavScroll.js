@@ -49,15 +49,15 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                 </Navbar.Brand>
                 <Navbar.Brand className="navbar-items fw-bold me-5">Travella</Navbar.Brand>
                 {user && (
-                    <Navbar.Brand className="navbar-items fw-bold me-5">
+                    <Nav.Link as={Link} to="/userProfile" className="navbar-items fw-bold me-5">
                         {user.email}
-                    </Navbar.Brand>
+                    </Nav.Link>
                 )}
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav
                         className="mx-auto d-flex justify-content-center align-items-center gap-4"
-                        style={{ maxHeight: '300px' }}
+                        style={{ maxHeight: '500px' }}
                         navbarScroll
                     >
                         <Nav.Link as={Link} to="/" className='navbar-items'>Home</Nav.Link>
@@ -73,15 +73,15 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                             <NavDropdown.Item as={Link} to="#">Weather Updates</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Local Recommendations</Nav.Link>
-                    </Nav>
 
-                    <div className="d-flex me-4">
-                        {user ? (
-                        <Button variant="outline-light" className="ms-3" onClick={handleLogout}>Logout</Button>
-                        ) : (
-                        <Button variant="light" onClick={handleLogin}>Login</Button>
-                        )}
-                    </div>
+                        <div className="d-flex me-4">
+                            {user ? (
+                            <Button variant="outline-light" className="ms-3" onClick={handleLogout}>Logout</Button>
+                            ) : (
+                            <Button variant="light" onClick={handleLogin}>Login</Button>
+                            )}
+                        </div>
+                    </Nav>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
