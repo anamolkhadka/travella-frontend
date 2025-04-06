@@ -4,6 +4,7 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
+import Itinerary from './components/Itinerary';
 import './styles/App.css';
 import Footer from './components/Footer';
 
@@ -31,6 +32,7 @@ function App() {
             <Route path="/login" element={<LoginForm setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/userProfile" element={isAuthenticated ? <UserProfile user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/userItinerary" element={isAuthenticated ? <Itinerary user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
         <Footer />

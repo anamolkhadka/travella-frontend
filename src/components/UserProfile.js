@@ -6,7 +6,6 @@ import axios from 'axios';
 import "../styles/UserProfile.css";
 
 const API_URL = "http://localhost:3000";
-///const token = localStorage.getItem('token');
 // Ensure axios is configured globally to include credentials. Important for cookies. 
 axios.defaults.withCredentials = true;
 
