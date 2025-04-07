@@ -5,6 +5,8 @@ import RegisterForm from './components/RegisterForm';
 import Home from './components/Home';
 import UserProfile from './components/UserProfile';
 import Itinerary from './components/Itinerary';
+import UserCreateItinerary from './components/UserCreateItinerary';
+import AIGenerateItinerary from './components/AIGenerateItinerary';
 import './styles/App.css';
 import Footer from './components/Footer';
 
@@ -33,6 +35,8 @@ function App() {
             <Route path="/register" element={<RegisterForm />} />
             <Route path="/userProfile" element={isAuthenticated ? <UserProfile user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/userItinerary" element={isAuthenticated ? <Itinerary user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/createItinerary" element={isAuthenticated ? <UserCreateItinerary user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/generateItinerary" element={isAuthenticated ? <AIGenerateItinerary user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
         <Footer />

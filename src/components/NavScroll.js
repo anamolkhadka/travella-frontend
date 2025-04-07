@@ -64,8 +64,8 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                         <Nav.Link href="#about" className='navbar-items'>About</Nav.Link>
                         <NavDropdown title="Itinerary" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/userItinerary">My Itineraries</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="#">Create Custom Itinerary</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="#">AI Generated Itinerary</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/createItinerary">Create Custom Itinerary</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/generateItinerary">AI Generated Itinerary</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Flights</Nav.Link>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Hotels</Nav.Link>
