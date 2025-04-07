@@ -70,8 +70,8 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                         <Nav.Link as={Link} to="#" className='navbar-items'>Flights</Nav.Link>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Hotels</Nav.Link>
                         <NavDropdown title="Real-Time Travel Updates" id="navbarScrollingDropdown">
-                            <NavDropdown.Item as={Link} to="#">Flight Updates</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="#">Weather Updates</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/flightUpdates">Flight Updates</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/weatherUpdates">Weather Updates</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Local Recommendations</Nav.Link>
 
