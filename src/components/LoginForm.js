@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../styles/LoginForm.css";
 
-function LoginForm() {
+const API_URL = "http://localhost:3000";
+
+function LoginForm({ setUser, setIsAuthenticated, setToken }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false); // Loading state
@@ -23,7 +25,44 @@ function LoginForm() {
 
     /// This function handles the form submission.
     const handleSubmit = async (event) => {
-    
+        event.preventDefault();
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.post(`${API_URL}/auth/login`, {
+                email,
+                password,
+            });
+
+            const { message, token, userId } = response.data;
+            
+            // Get User profile from the server
+            const userResponse = await axios.get(`${API_URL}/users/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const userProfile = userResponse.data;
+
+            // Store user and token to local storage
+            localStorage.setItem('token', token);
+            localStorage.setItem("user", JSON.stringify(userProfile));
+            localStorage.setItem("isAuthenticated", "true");
+            
+            // Update user state
+            setUser(userProfile);
+            setIsAuthenticated(true);
+            setToken(token);
+
+            // Redirect to home page. Replace is true so that the login page is not in the history when user clicks back button.
+            navigate('/', { replace: true });
+        } catch (err) {
+            setError("Login failed: " + err.response.data.message); // Set error message
+            console.log(err);
+        } finally {
+            setLoading(false); // End loading
+        }
     };
 
     return (
@@ -57,7 +96,7 @@ function LoginForm() {
                             required
                         />
                     </div>
-                    <button type="submit" className="btn btn-green">
+                    <button type="submit" className="btn btn-blue">
                         {loading ? 'Loading...' : 'Submit'} {/* Display loading indicator */}
                     </button>
                     <p>Don't have an account ?</p>

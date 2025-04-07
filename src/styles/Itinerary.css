@@ -1,0 +1,29 @@
+.itinerary-container {
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.activity-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.activity-list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.95rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #3674B5;
+    color: white;
+}
+
+.accordion-button {
+    font-weight: 600;
+}
+
+.create-itinerary-h1 {
+    color:#3674B5
+}
