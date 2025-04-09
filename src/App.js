@@ -9,6 +9,8 @@ import UserCreateItinerary from './components/UserCreateItinerary';
 import AIGenerateItinerary from './components/AIGenerateItinerary';
 import WeatherUpdates from './components/WeatherUpdates';
 import FlightUpdates from './components/FlightUpdates';
+import LocalRecommendations from './components/LocalRecommendation';
+import LocalRecommendationDetails from './components/LocalRecommendationDetails';
 import './styles/App.css';
 import Footer from './components/Footer';
 
@@ -41,6 +43,8 @@ function App() {
             <Route path="/generateItinerary" element={isAuthenticated ? <AIGenerateItinerary user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/weatherUpdates" element={<WeatherUpdates user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/flightUpdates" element={<FlightUpdates user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
+            <Route path="/localRecommendation" element={isAuthenticated ? <LocalRecommendations user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/localRecommendation/:placeId" element={isAuthenticated ? <LocalRecommendationDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
         <Footer />

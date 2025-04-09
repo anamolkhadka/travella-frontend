@@ -26,6 +26,7 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('isAuthenticated');
+            sessionStorage.removeItem('recommendations');
             // Update user state
             setUser(null);
             setIsAuthenticated(false);
@@ -73,7 +74,7 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                             <NavDropdown.Item as={Link} to="/flightUpdates">Flight Updates</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/weatherUpdates">Weather Updates</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Local Recommendations</Nav.Link>
+                        <Nav.Link as={Link} to="/localRecommendation" className='navbar-items'>Local Recommendations</Nav.Link>
 
                         <div className="d-flex me-4">
                             {user ? (
