@@ -27,6 +27,9 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
             localStorage.removeItem('user');
             localStorage.removeItem('isAuthenticated');
             sessionStorage.removeItem('recommendations');
+            //Clear hotel session data
+            sessionStorage.removeItem('hotelResults');
+            sessionStorage.removeItem('hotelSearch');
             // Update user state
             setUser(null);
             setIsAuthenticated(false);
@@ -69,7 +72,7 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                             <NavDropdown.Item as={Link} to="/generateItinerary">AI Generated Itinerary</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link as={Link} to="#" className='navbar-items'>Flights</Nav.Link>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Hotels</Nav.Link>
+                        <Nav.Link as={Link} to="/searchHotels" className='navbar-items'>Hotels</Nav.Link>
                         <NavDropdown title="Real-Time Travel Updates" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/flightUpdates">Flight Updates</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/weatherUpdates">Weather Updates</NavDropdown.Item>

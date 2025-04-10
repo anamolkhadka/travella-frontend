@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Form, Row, Col, Container } from 'react-bootstrap';
+import { Card, Button, Form, Row, Col, Container, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import NavScroll from './NavScroll';
@@ -13,6 +13,7 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
     const [recommendations, setRecommendations] = useState([]);
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
+    const [loading, setLoading] = useState(false);
 
     // Load from sessionStorage if available; else fetch using user's default location
     useEffect(() => {
@@ -22,6 +23,7 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
         } else if (user?.location) {
             const fetchDefault = async () => {
                 try {
+                    setLoading(true);
                     const response = await axios.get(`${API_URL}/recommend/city/${user.location}`, {
                         headers: {
                             Authorization: `Bearer ${token}`,
@@ -31,6 +33,8 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
                     sessionStorage.setItem('recommendations', JSON.stringify(response.data));
                 } catch (err) {
                     console.error('Error fetching recommendations:', err);
+                } finally {
+                    setLoading(false);
                 }
             };
             fetchDefault();
@@ -45,6 +49,7 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
         const preferences = formData.get('preferences');
 
         try {
+            setLoading(true);
             const response = await axios.post(`${API_URL}/recommend/user-preferences`, 
             { location, preferences }, {
                 headers: {
@@ -57,6 +62,8 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } catch (err) {
             console.error('Error fetching search results:', err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -85,31 +92,40 @@ function LocalRecommendations({ user, setUser, setIsAuthenticated, setToken }) {
             </Row>
         </Form>
 
-        <Row className="g-4">
-            {recommendations.map((place, index) => (
-            <Col md={4} key={index}>
-                <Card className="h-100 recommendation-card" onClick={() => handleCardClick(place)}>
-                {place.photos && place.photos[0] && (
-                    <Card.Img
-                    variant="top"
-                    src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${GOOGLE_MAPS_API_KEY}`}
-                    alt={place.name}
-                    />
-                )}
-                <Card.Body>
-                    <Card.Title>{place.name}</Card.Title>
-                    <Card.Text className="mb-1"><strong>Address:</strong> {place.formatted_address}</Card.Text>
-                    <Card.Text className="mb-1">
-                        <strong>Rating:</strong> {place.rating} ✨ ({place.user_ratings_total} reviews)
-                    </Card.Text>
-                    <Card.Text className="mb-1">
-                        <strong>Status:</strong> {place.opening_hours?.open_now ? 'Open Now' : 'Closed'}
-                    </Card.Text>
-                </Card.Body>
-                </Card>
-            </Col>
-            ))}
-        </Row>
+        {loading && (
+            <div className="text-center my-4">
+                <Spinner animation="border" role="status" />
+                <p className="mt-2">Searching recommendations...</p>
+            </div>
+        )}
+
+        {!loading && recommendations.length > 0 && (
+            <Row className="g-4">
+                {recommendations.map((place, index) => (
+                <Col md={4} key={index}>
+                    <Card className="h-100 recommendation-card" onClick={() => handleCardClick(place)}>
+                    {place.photos && place.photos[0] && (
+                        <Card.Img
+                        variant="top"
+                        src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photos[0].photo_reference}&key=${GOOGLE_MAPS_API_KEY}`}
+                        alt={place.name}
+                        />
+                    )}
+                    <Card.Body>
+                        <Card.Title>{place.name}</Card.Title>
+                        <Card.Text className="mb-1"><strong>Address:</strong> {place.formatted_address}</Card.Text>
+                        <Card.Text className="mb-1">
+                            <strong>Rating:</strong> {place.rating} ✨ ({place.user_ratings_total} reviews)
+                        </Card.Text>
+                        <Card.Text className="mb-1">
+                            <strong>Status:</strong> {place.opening_hours?.open_now ? 'Open Now' : 'Closed'}
+                        </Card.Text>
+                    </Card.Body>
+                    </Card>
+                </Col>
+                ))}
+            </Row>
+        )}
         </Container>
     </div>
     );

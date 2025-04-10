@@ -11,6 +11,8 @@ import WeatherUpdates from './components/WeatherUpdates';
 import FlightUpdates from './components/FlightUpdates';
 import LocalRecommendations from './components/LocalRecommendation';
 import LocalRecommendationDetails from './components/LocalRecommendationDetails';
+import Hotels from './components/Hotel';
+import HotelDetails from './components/HotelDetails';
 import './styles/App.css';
 import Footer from './components/Footer';
 
@@ -45,6 +47,8 @@ function App() {
             <Route path="/flightUpdates" element={<FlightUpdates user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/>} />
             <Route path="/localRecommendation" element={isAuthenticated ? <LocalRecommendations user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/localRecommendation/:placeId" element={isAuthenticated ? <LocalRecommendationDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/searchHotels" element={isAuthenticated ? <Hotels user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/searchHotels/:hotelId" element={isAuthenticated ? <HotelDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
         <Footer />
