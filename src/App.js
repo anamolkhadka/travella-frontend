@@ -13,6 +13,7 @@ import LocalRecommendations from './components/LocalRecommendation';
 import LocalRecommendationDetails from './components/LocalRecommendationDetails';
 import Hotels from './components/Hotel';
 import HotelDetails from './components/HotelDetails';
+import HotelBookings from './components/HotelBookings';
 import UserExpenses from './components/UserExpenses';
 import './styles/App.css';
 import Footer from './components/Footer';
@@ -50,6 +51,7 @@ function App() {
             <Route path="/localRecommendation/:placeId" element={isAuthenticated ? <LocalRecommendationDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/searchHotels" element={isAuthenticated ? <Hotels user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/searchHotels/:hotelId" element={isAuthenticated ? <HotelDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/hotelBookings" element={isAuthenticated ? <HotelBookings user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/userExpenses" element={isAuthenticated ? <UserExpenses user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>
