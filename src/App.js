@@ -14,6 +14,9 @@ import LocalRecommendationDetails from './components/LocalRecommendationDetails'
 import Hotels from './components/Hotel';
 import HotelDetails from './components/HotelDetails';
 import HotelBookings from './components/HotelBookings';
+import Flights from './components/Flights';
+import FlightDetails from './components/FlightDetails';
+import FlightBookings from './components/FlightBookings';
 import UserExpenses from './components/UserExpenses';
 import './styles/App.css';
 import Footer from './components/Footer';
@@ -52,6 +55,9 @@ function App() {
             <Route path="/searchHotels" element={isAuthenticated ? <Hotels user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/searchHotels/:hotelId" element={isAuthenticated ? <HotelDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/hotelBookings" element={isAuthenticated ? <HotelBookings user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/searchFlights" element={isAuthenticated ? <Flights user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/bookFlight/:id" element={isAuthenticated ? <FlightDetails user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
+            <Route path="/flightBookings" element={isAuthenticated ? <FlightBookings user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
             <Route path="/userExpenses" element={isAuthenticated ? <UserExpenses user={user} setUser={setUser} setIsAuthenticated={setIsAuthenticated} setToken={setToken}/> : <Navigate to="/login" />} />
           </Routes>
         </div>

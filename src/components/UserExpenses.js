@@ -69,8 +69,8 @@ function UserExpenses({ user, setUser, setIsAuthenticated, setToken }) {
 
                 <Form onSubmit={handleFilterSubmit} className="my-4">
                     <Form.Group controlId="amount" className="mb-3">
-                        <Form.Label>Amount ($)</Form.Label>
-                        <Form.Control type="number" name="amount" placeholder="Amount" />
+                        <Form.Label>Amount</Form.Label>
+                        <Form.Control type="text" name="amount" placeholder="Amount" />
                     </Form.Group>
 
                     <Form.Group controlId="category" className="mb-3">
@@ -114,7 +114,7 @@ function UserExpenses({ user, setUser, setIsAuthenticated, setToken }) {
                         <thead>
                             <tr>
                                 <th>Date</th>
-                                <th>Amount ($)</th>
+                                <th>Amount</th>
                                 <th>Category</th>
                                 <th>Vendor</th>
                             </tr>

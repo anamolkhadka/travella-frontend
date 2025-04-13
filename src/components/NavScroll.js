@@ -30,6 +30,9 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
             //Clear hotel session data
             sessionStorage.removeItem('hotelResults');
             sessionStorage.removeItem('hotelSearch');
+            // Clear flight session data
+            sessionStorage.removeItem('flightResults');
+            sessionStorage.removeItem('flightSearch');
             // Update user state
             setUser(null);
             setIsAuthenticated(false);
@@ -72,16 +75,19 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                             <NavDropdown.Item as={Link} to="/createItinerary">Create Custom Itinerary</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/generateItinerary">AI Generated Itinerary</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Flights</Nav.Link>
+                        <NavDropdown title="Flights" id="navbarScrollingDropdown">
+                            <NavDropdown.Item as={Link} to="/searchFlights">Book Flight</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/flightBookings">My Bookings</NavDropdown.Item>
+                        </NavDropdown>
                         <NavDropdown title="Hotels" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/searchHotels">Book hotel</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/hotelBookings">My Reservations</NavDropdown.Item>
                         </NavDropdown>
-                        <NavDropdown title="Real-Time Travel Updates" id="navbarScrollingDropdown">
+                        <NavDropdown title="Travel Updates" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/flightUpdates">Flight Updates</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/weatherUpdates">Weather Updates</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="/localRecommendation" className='navbar-items'>Local Recommendations</Nav.Link>
+                        <Nav.Link as={Link} to="/localRecommendation" className='navbar-items'>Recommendations</Nav.Link>
 
                         <div className="d-flex me-4">
                             {user ? (
