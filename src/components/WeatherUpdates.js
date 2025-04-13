@@ -8,24 +8,23 @@ const API_URL = "http://localhost:3000";
 axios.defaults.withCredentials = true;
 
 function WeatherUpdates({ user, setUser, setIsAuthenticated, setToken }) {
-  const [weather, setWeather] = useState(null);
+    const [weather, setWeather] = useState(null);
 
-  // Handles form submission and fetches weather based on user input
-  const handleSubmit = async (e) => {
+    // Handles form submission and fetches weather based on user input
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const city = formData.get('city');
+      const country = formData.get('country');
+      ///const token = localStorage.getItem('token');
 
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const city = formData.get('city');
-    const country = formData.get('country');
-    ///const token = localStorage.getItem('token');
-
-    try {
-      const response = await axios.post(`${API_URL}/travel-updates/weather`, { city, country });
-      setWeather(response.data);
-    } catch (err) {
-      console.error("Error fetching weather:", err);
-      alert("Failed to get weather data.");
-    }
+      try {
+        const response = await axios.post(`${API_URL}/travel-updates/weather`, { city, country });
+        setWeather(response.data);
+      } catch (err) {
+        console.error("Error fetching weather:", err);
+        alert("Failed to get weather data.");
+      }
   };
 
 return (

@@ -15,7 +15,7 @@ export const featuresSection = [
     {
         id: 2,
         title: "Flight & Hotel Booking",
-        description: "Book flights and accommodations with ease through our integrated API providers like Skyscanner and Booking.com.",
+        description: "Book flights and accommodations with ease through our integrated API providers like Amadeus and Trip Advisor.",
         image: "/resources/feature-booking.png"
     },
     {

@@ -26,6 +26,13 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             localStorage.removeItem('isAuthenticated');
+            sessionStorage.removeItem('recommendations');
+            //Clear hotel session data
+            sessionStorage.removeItem('hotelResults');
+            sessionStorage.removeItem('hotelSearch');
+            // Clear flight session data
+            sessionStorage.removeItem('flightResults');
+            sessionStorage.removeItem('flightSearch');
             // Update user state
             setUser(null);
             setIsAuthenticated(false);
@@ -62,18 +69,25 @@ function NavScroll({ user, setUser, setIsAuthenticated, setToken }) {
                     >
                         <Nav.Link as={Link} to="/" className='navbar-items'>Home</Nav.Link>
                         <Nav.Link href="#about" className='navbar-items'>About</Nav.Link>
+                        <Nav.Link as={Link} to="/userExpenses" className='navbar-items'>Expenses</Nav.Link>
                         <NavDropdown title="Itinerary" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/userItinerary">My Itineraries</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/createItinerary">Create Custom Itinerary</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/generateItinerary">AI Generated Itinerary</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Flights</Nav.Link>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Hotels</Nav.Link>
-                        <NavDropdown title="Real-Time Travel Updates" id="navbarScrollingDropdown">
+                        <NavDropdown title="Flights" id="navbarScrollingDropdown">
+                            <NavDropdown.Item as={Link} to="/searchFlights">Book Flight</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/flightBookings">My Bookings</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Hotels" id="navbarScrollingDropdown">
+                            <NavDropdown.Item as={Link} to="/searchHotels">Book hotel</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/hotelBookings">My Reservations</NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown title="Travel Updates" id="navbarScrollingDropdown">
                             <NavDropdown.Item as={Link} to="/flightUpdates">Flight Updates</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/weatherUpdates">Weather Updates</NavDropdown.Item>
                         </NavDropdown>
-                        <Nav.Link as={Link} to="#" className='navbar-items'>Local Recommendations</Nav.Link>
+                        <Nav.Link as={Link} to="/localRecommendation" className='navbar-items'>Recommendations</Nav.Link>
 
                         <div className="d-flex me-4">
                             {user ? (
