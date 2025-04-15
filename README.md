@@ -21,6 +21,7 @@ Travella is your AI-powered assistant for planning unforgettable journeys. From 
 - **SessionStorage / LocalStorage** for state persistence
 
 ## Setup Instructions
+- Clone the Repository.
 - npm install (Install dependencies)
 - npm start (Start the application)
 
