@@ -26,7 +26,7 @@ Travella is your AI-powered assistant for planning unforgettable journeys. From 
 
 ## License
 
-- #### Copyright © 2024 Anamol Khadka. All rights reserved.
+- #### Copyright © 2025 Anamol Khadka. All rights reserved.
 - This work is protected under copyright law. Unauthorized reproduction, distribution, or modification of this work, in whole or in part, is strictly prohibited without prior written permission from the copyright holder.
 - For licensing inquiries or permissions, please contact: khadkaanamol8@gmail.com
   
