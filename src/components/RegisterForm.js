@@ -7,6 +7,8 @@ import "../styles/LoginForm.css";
 const API_URL = "http://localhost:3000";
 
 function RegisterForm() {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [location, setLocation] = useState('');
@@ -16,6 +18,14 @@ function RegisterForm() {
 
     /// This function handles change on the input field and sets the current value of email.
     //  Here event is an object that causes the trigger.
+
+    const handleFirstNameChange = (event) => {
+        setFirstName(event.target.value);
+    };
+
+    const handleLastNameChange = (event) => {
+        setLastName(event.target.value);
+    };
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     };
@@ -33,11 +43,13 @@ function RegisterForm() {
         event.preventDefault();
         setLoading(true);
         setError(null);
-        console.log("Registering user", { email, password, location });
+        console.log("Registering user", { firstName, lastName, email, password, location });
 
         // Make a POST request to the server.
         try {
             const response = await axios.post(`${API_URL}/auth/register`, {
+                firstName,
+                lastName,
                 email,
                 password,
                 location,
@@ -62,6 +74,30 @@ function RegisterForm() {
                     <h1>Travella</h1>
                     <h2>Sign Up with us !</h2>
                     {error && <p className="error">{error}</p>} {/* Display error message */}
+                    <div className="mb-3">
+                        <label htmlFor="firstName" className="form-label">First Name</label>
+                        <input
+                            type="text"
+                            onChange={handleFirstNameChange}
+                            className="form-control"
+                            placeholder="John"
+                            id="firstName"
+                            value={firstName}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="lastName" className="form-label">Last Name</label>
+                        <input
+                            type="text"
+                            onChange={handleLastNameChange}
+                            className="form-control"
+                            placeholder="Martinez"
+                            id="lastName"
+                            value={lastName}
+                            required
+                        />
+                    </div>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email address</label>
                         <input
